@@ -30,31 +30,34 @@ let elForm = document.querySelector("#form")
 // let elBtn = document.querySelector("#btn")
 let elSelect = elForm.querySelector("#user_id")
 
+let userData = await Api.GET("users");
+// console.log(userData);
+userData.forEach(element => {
+    let option = document.createElement("option")
+    option.textContent = element.name;
+    option.value = element.id;
+    // option.value = element
+
+    elSelect.append(option);
+    // console.log(option);
+});
 
 
-elForm.addEventListener("submit", (evt) => {
+
+elForm.addEventListener("submit", async (evt) => {
     evt.preventDefault()
 
-    let { inptitle, inpbody, inpuser } = evt.target.elements
-    // // console.log(inptitle.value, inpbody.value, inpuser.value);
-    // // newData.push(title.elInpTitle.value)
-    // newData.push(title.inptitle.value)
-    // // newData.push(body.elInpBody.value)
-    // newData.push(body.inpbody.value)
-    // // newData.push(userId.elInpUser.value)
-    // newData.push(userId.inpuser.value)
+    let { inptitle, inpbody, inpuser, } = evt.target.elements;
+    console.log();
+    let newObject = {
+        userId: inpuser.value,
+        title: inptitle.value,
+        body: inpbody.value,
+    }
 
-    let userData = await Api.GET("users");
-    console.log(userData);
-    userData.forEach(element => {
-        let option = document.createElement("option")
-        option.textContent = element.name;
-        option.value = element.id;
-        // option.value = element
-        element.append(option);
-    });
+    console.log(newObject);
+
+
+
 
 })
-
-// console.log(newData);
-// console.log(await Api.POST("posts", newData));

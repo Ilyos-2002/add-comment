@@ -55,20 +55,20 @@ const Api = {
             return undefined
         }
     },
-    POST: async (value) => {
+    POST: async (value, data) => {
         try {
-            let data = await fetch(`https://jsonplaceholder.typicode.com/${value}`, {
+            let userData = await fetch(`https://jsonplaceholder.typicode.com/${value}`, {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json"
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(userData)
             })
                 .then((res) => res.json())
-                .then((data) => data)
-            // return data
+                .then((json) => json)
+            return userData
         } catch {
-            // return alert("xato PUT")
+
 
         }
     },
